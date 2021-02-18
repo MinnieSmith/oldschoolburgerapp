@@ -1,0 +1,67 @@
+.Control {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 3px;
+    background-color:#B18F78;
+    border-radius: 4px;
+}
+
+.ControlButton {
+    display: block;
+    padding: 5px;
+    margin: 0 5px;
+    width: 80px;
+    border: 1px;
+    cursor: pointer;
+    outline: none;
+}
+
+.ControlButton:disabled {
+    cursor: default;
+}
+
+.ControlButton:hover:disabled {
+    cursor: not-allowed;
+}
+
+.Label {
+    padding: 10px;
+    font-weight: bold;
+    font-size: small;
+    width: 80px;
+}
+
+.Control .Remove {
+    font-family: inherit;
+    font-weight: bold;
+    font-size: x-small;
+    background-color: #857567;
+    color: black;
+    margin: 2px;
+    border-radius: 4px;
+}
+
+.Control .Add {
+    font-family: inherit;
+    font-weight: bold;
+    font-size: x-small;
+    background-color:#EED6B2;
+    margin: 2px;
+    color: black;
+    border-radius: 4px;
+}
+
+.Control .Remove:hover, .Control .Remove:active {
+    font-family: inherit;
+    background-color:  #695d51;
+    color: white;
+    border-radius: 4px;
+}
+
+.Control .Add:hover, .Control .Add:active {
+    font-family: inherit;
+    background-color:#cfae7c;
+    color: white;
+    border-radius: 4px;
+}
