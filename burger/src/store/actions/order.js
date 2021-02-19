@@ -24,14 +24,14 @@ export const purchaseBurgerStart = () => {
     };
 }
 
-export const purchaseBurger = (orderData) => {
+export const purchaseBurger = (orderData, token) => {
     return dispatch => {
         /* wrapping purchaseBurgerStart with dispatch ensures that it gets 
         dispatched to the store*/
         dispatch(purchaseBurgerStart());
         /*for firebase, you pass in the node that you want to create with .json format and 
         and then name of the const which contains the data */
-        axios.post('/orders.json', orderData)
+        axios.post('/orders.json?auth=' + token, orderData)
             .then(response => {
                 dispatch(purchaseBurgerSuccess(response.data.name, orderData));
             })
@@ -67,10 +67,10 @@ export const fetchOrderStart = () => {
     }
 };
 
-export const fetchOrders = () => {
+export const fetchOrders = (token) => {
     return dispatch => {
         dispatch(fetchOrderStart());
-        axios.get('/orders.json')
+        axios.get('/orders.json?auth=' + token)
             .then(res => {
                 const fetchOrders = [];
                 for (let key in res.data) {

@@ -40,7 +40,7 @@ const withErrorHandler = (WrappedComponent, axios) => {
                         {/* turnary expression - will output error message if there is an
                         error otherwise null */}
                         {this.state.error ? this.state.error.message : null}
-                        Something didn't work!
+                        <p>Something didn't work!</p>
                     </Modal>
                     <WrappedComponent {...this.props} />
                 </Aux>

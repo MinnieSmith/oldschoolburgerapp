@@ -10,9 +10,11 @@ const toolbar = (props) => (
         <div className='ToolbarLogo'>
             <Logo />
         </div>
-        <nav className='DesktopOnly'><NavigationItem />
+        <nav className='DesktopOnly'>
+            <NavigationItem 
+            isAuthenticated ={props.isAuth}/>
         </nav>
     </header>
 );
 
-export default toolbar;     
+export default toolbar;       
