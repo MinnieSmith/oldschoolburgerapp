@@ -78,7 +78,7 @@ class Auth extends Component {
     componentDidMount() {
         //resets the page if burgerbuilder if '/' not reached while building a burger
         if(!this.props.buildingBurger && this.props.authRedirectPath !== '/') {
-            this.onSetAuthRedirectPath();
+            this.props.onSetAuthRedirectPath();
         }          
     }
 

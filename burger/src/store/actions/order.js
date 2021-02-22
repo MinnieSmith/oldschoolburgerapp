@@ -31,15 +31,17 @@ export const purchaseBurger = (orderData, token) => {
         dispatch(purchaseBurgerStart());
         /*for firebase, you pass in the node that you want to create with .json format and 
         and then name of the const which contains the data */
-        axios.post('/orders.json?auth=' + token, orderData)
-            .then(response => {
-                dispatch(purchaseBurgerSuccess(response.data.name, orderData));
-            })
-            .catch(error => {
-                dispatch(purchaseBurgerFail(error));
-            });
-    };
-}
+        const queryParams = '?auth=' + token;
+        axios.post( '/orders.json' + queryParams, orderData )
+        .then( response => {
+            console.log( response.data );
+            dispatch( purchaseBurgerSuccess( response.data.name, orderData ) );
+        } )
+        .catch( error => {
+            dispatch( purchaseBurgerFail( error ) );
+        } );
+};
+};
 
 export const purchaseInit = () => {
     return {
@@ -65,12 +67,15 @@ export const fetchOrderStart = () => {
     return {
         type: actionTypes.FETCH_ORDER_START
     }
-};
+};  
 
-export const fetchOrders = (token) => {
+export const fetchOrders = (token, userId) => {
     return dispatch => {
         dispatch(fetchOrderStart());
-        axios.get('/orders.json?auth=' + token)
+        //orderBy and equalTo query params allows us to query the firebase database
+        //so it only returns the orders made by the particular userid 
+        const queryParams = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
+        axios.get('/orders.json' + queryParams)
             .then(res => {
                 const fetchOrders = [];
                 for (let key in res.data) {
