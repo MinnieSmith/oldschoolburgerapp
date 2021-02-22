@@ -1,0 +1,11 @@
+.BurgerBuilder {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+}
+
+@media(min-width:400px) and (min-height: 350px) {
+    .BurgerBuilder {
+        flex-flow: row;
+    }
+} 

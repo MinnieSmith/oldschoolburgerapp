@@ -9,6 +9,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import axios from '../../axios-orders';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../store/actions/index';
+import './BurgerBuilder.css';
 
 class BurgerBuilder extends Component {
     state = {
@@ -17,19 +18,19 @@ class BurgerBuilder extends Component {
     }
 
     componentDidMount() {
-        this.props.onInitIngredients();  
+        this.props.onInitIngredients();
     }
 
     //function sets order to true if isAuth, else redirect to auth 
     orderHandler = () => {
-        if(this.props.isAuthenticated){
-          this.setState({ order: true });  
-          
+        if (this.props.isAuthenticated) {
+            this.setState({ order: true });
+
         } else {
             this.props.onSetAuthRedirectPath('/checkout');
             this.props.history.push('/auth');
         }
-        
+
     }
 
     orderCancelledHandler = () => {
@@ -100,14 +101,16 @@ class BurgerBuilder extends Component {
                 orderCancelled={this.orderCancelledHandler}
                 orderContinue={this.orderProceedHandler} />;
         }
- 
+
 
         return (
             <Aux>
                 <Modal show={this.state.order} modalClosed={this.cancelOrderHandler}> {/*binds the modal to order boolean*/}
                     {orderSummary}
                 </Modal>
-                {burger}
+                <div className='BurgerBuilder'>
+                    {burger}
+                </div>
             </Aux>
         );
     }
